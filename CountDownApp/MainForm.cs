@@ -112,24 +112,41 @@ namespace CountDownApp
 				
 			
 				
+				if (Secendos == 1500) {
+					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 25 minutes are remaining" ,  ToolTipIcon.Info);
+					
+				}
+				
+				
+				if (Secendos == 1200) {
+					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 20 minutes are remaining" ,  ToolTipIcon.Info);
+					
+				}
+				
+				
+				if (Secendos == 900) {
+					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 15 minutes are remaining" ,  ToolTipIcon.Info);
+					
+				}
+				
 				if (Secendos == 600) {
-					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 10 minitus remaining" ,  ToolTipIcon.Info);
+					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 10 minutes are remaining" ,  ToolTipIcon.Info);
 					
 				}
 				
 				
 				if (Secendos == 300) {
-					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 5 minitus remaining" ,  ToolTipIcon.Info);
+					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 5 minutes are remaining" ,  ToolTipIcon.Info);
 					
 				}
 				
 				if (Secendos == 120) {
-					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 2 minitus remaining" ,  ToolTipIcon.Info);
+					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 2 minutes are remaining" ,  ToolTipIcon.Info);
 					
 				}
 				
 				if (Secendos == 60) {
-					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 1 minit remaining" ,  ToolTipIcon.Info);
+					this.notifyIcon1.ShowBalloonTip(3000 , "Hurry up" ,"Only 1 minute are remaining" ,  ToolTipIcon.Info);
 					
 				}
 				
