@@ -19,7 +19,7 @@ namespace CountDownApp
   {
     #region Variables
 
-    private int Minitus = 0;
+    private decimal Minitus = 0;
     private int Secendos = 0;
     private bool IsResetPeriodOver = false;
     private bool IsPaused = false;
@@ -40,8 +40,8 @@ namespace CountDownApp
 
     private void TxtNoOfMinTextChanged(object sender, EventArgs e)
     {
-      int min = 0;
-      if (!int.TryParse(txtNoOfMin.Text, out min))
+      decimal min = 0;
+      if (!decimal.TryParse(txtNoOfMin.Text, out min))
       {
         txtNoOfMin.Text = "0";
         return;
@@ -52,7 +52,7 @@ namespace CountDownApp
 
     private void calculateRemainingSecenods()
     {
-      Secendos = Minitus * 60;
+      Secendos = (int)(Math.Round(Minitus * 60));
       ShowTimeOnLabel();
     }
 
@@ -183,8 +183,8 @@ namespace CountDownApp
 
     private void TxtNoOfMinLeave(object sender, EventArgs e)
     {
-      int min = 0;
-      if (!int.TryParse(txtNoOfMin.Text, out min))
+      decimal min = 0;
+      if (!decimal.TryParse(txtNoOfMin.Text, out min))
       {
         txtNoOfMin.Text = "0";
         return;
