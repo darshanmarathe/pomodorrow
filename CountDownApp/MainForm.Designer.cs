@@ -57,12 +57,24 @@ namespace CountDownApp
       this.chkLastMinitus = new System.Windows.Forms.CheckBox();
       this.btnGt = new System.Windows.Forms.Button();
       this.btnls = new System.Windows.Forms.Button();
+      this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.btnAdd = new System.Windows.Forms.Button();
+      this.lblTask = new System.Windows.Forms.Label();
+      this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.noOfPomodorrowsReqDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.noOfPomodorrowPendingDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.taskIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.taskBindingSource = new System.Windows.Forms.BindingSource(this.components);
+      this.btnDelete = new System.Windows.Forms.Button();
       this.contextMenuStrip1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).BeginInit();
       this.SuspendLayout();
       // 
       // txtNoOfMin
       // 
-      this.txtNoOfMin.Location = new System.Drawing.Point(135, 16);
+      this.txtNoOfMin.Location = new System.Drawing.Point(241, 16);
       this.txtNoOfMin.Name = "txtNoOfMin";
       this.txtNoOfMin.Size = new System.Drawing.Size(39, 20);
       this.txtNoOfMin.TabIndex = 0;
@@ -73,7 +85,7 @@ namespace CountDownApp
       // 
       // label1
       // 
-      this.label1.Location = new System.Drawing.Point(6, 19);
+      this.label1.Location = new System.Drawing.Point(112, 19);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(108, 23);
       this.label1.TabIndex = 1;
@@ -82,7 +94,7 @@ namespace CountDownApp
       // lblRemainingtime
       // 
       this.lblRemainingtime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblRemainingtime.Location = new System.Drawing.Point(12, 42);
+      this.lblRemainingtime.Location = new System.Drawing.Point(118, 42);
       this.lblRemainingtime.Name = "lblRemainingtime";
       this.lblRemainingtime.Size = new System.Drawing.Size(240, 36);
       this.lblRemainingtime.TabIndex = 2;
@@ -91,7 +103,7 @@ namespace CountDownApp
       // 
       // btnStart
       // 
-      this.btnStart.Location = new System.Drawing.Point(48, 81);
+      this.btnStart.Location = new System.Drawing.Point(154, 81);
       this.btnStart.Name = "btnStart";
       this.btnStart.Size = new System.Drawing.Size(75, 23);
       this.btnStart.TabIndex = 3;
@@ -101,7 +113,7 @@ namespace CountDownApp
       // 
       // btnPause
       // 
-      this.btnPause.Location = new System.Drawing.Point(123, 81);
+      this.btnPause.Location = new System.Drawing.Point(229, 81);
       this.btnPause.Name = "btnPause";
       this.btnPause.Size = new System.Drawing.Size(75, 23);
       this.btnPause.TabIndex = 4;
@@ -111,7 +123,7 @@ namespace CountDownApp
       // 
       // btnStop
       // 
-      this.btnStop.Location = new System.Drawing.Point(48, 106);
+      this.btnStop.Location = new System.Drawing.Point(154, 106);
       this.btnStop.Name = "btnStop";
       this.btnStop.Size = new System.Drawing.Size(75, 23);
       this.btnStop.TabIndex = 5;
@@ -171,7 +183,7 @@ namespace CountDownApp
       // 
       // rdbPomodoro
       // 
-      this.rdbPomodoro.Location = new System.Drawing.Point(142, 135);
+      this.rdbPomodoro.Location = new System.Drawing.Point(248, 135);
       this.rdbPomodoro.Name = "rdbPomodoro";
       this.rdbPomodoro.Size = new System.Drawing.Size(104, 24);
       this.rdbPomodoro.TabIndex = 6;
@@ -182,7 +194,7 @@ namespace CountDownApp
       // rdbCountDown
       // 
       this.rdbCountDown.Checked = true;
-      this.rdbCountDown.Location = new System.Drawing.Point(32, 135);
+      this.rdbCountDown.Location = new System.Drawing.Point(138, 135);
       this.rdbCountDown.Name = "rdbCountDown";
       this.rdbCountDown.Size = new System.Drawing.Size(104, 24);
       this.rdbCountDown.TabIndex = 7;
@@ -193,7 +205,7 @@ namespace CountDownApp
       // 
       // btnHide
       // 
-      this.btnHide.Location = new System.Drawing.Point(123, 106);
+      this.btnHide.Location = new System.Drawing.Point(229, 106);
       this.btnHide.Name = "btnHide";
       this.btnHide.Size = new System.Drawing.Size(75, 23);
       this.btnHide.TabIndex = 8;
@@ -205,7 +217,7 @@ namespace CountDownApp
       // 
       this.chkLastMinitus.Checked = true;
       this.chkLastMinitus.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.chkLastMinitus.Location = new System.Drawing.Point(48, 165);
+      this.chkLastMinitus.Location = new System.Drawing.Point(154, 165);
       this.chkLastMinitus.Name = "chkLastMinitus";
       this.chkLastMinitus.Size = new System.Drawing.Size(161, 24);
       this.chkLastMinitus.TabIndex = 9;
@@ -214,7 +226,7 @@ namespace CountDownApp
       // 
       // btnGt
       // 
-      this.btnGt.Location = new System.Drawing.Point(169, 14);
+      this.btnGt.Location = new System.Drawing.Point(275, 14);
       this.btnGt.Name = "btnGt";
       this.btnGt.Size = new System.Drawing.Size(29, 23);
       this.btnGt.TabIndex = 10;
@@ -224,7 +236,7 @@ namespace CountDownApp
       // 
       // btnls
       // 
-      this.btnls.Location = new System.Drawing.Point(107, 14);
+      this.btnls.Location = new System.Drawing.Point(213, 14);
       this.btnls.Name = "btnls";
       this.btnls.Size = new System.Drawing.Size(29, 23);
       this.btnls.TabIndex = 11;
@@ -232,11 +244,99 @@ namespace CountDownApp
       this.btnls.UseVisualStyleBackColor = true;
       this.btnls.Click += new System.EventHandler(this.btnls_Click);
       // 
+      // dataGridView1
+      // 
+      this.dataGridView1.AutoGenerateColumns = false;
+      this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nameDataGridViewTextBoxColumn,
+            this.descriptionDataGridViewTextBoxColumn,
+            this.noOfPomodorrowsReqDataGridViewTextBoxColumn,
+            this.noOfPomodorrowPendingDataGridViewTextBoxColumn,
+            this.taskIdDataGridViewTextBoxColumn});
+      this.dataGridView1.DataSource = this.taskBindingSource;
+      this.dataGridView1.Location = new System.Drawing.Point(12, 219);
+      this.dataGridView1.Name = "dataGridView1";
+      this.dataGridView1.Size = new System.Drawing.Size(438, 218);
+      this.dataGridView1.TabIndex = 12;
+      this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+      this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+      // 
+      // btnAdd
+      // 
+      this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnAdd.Location = new System.Drawing.Point(13, 190);
+      this.btnAdd.Name = "btnAdd";
+      this.btnAdd.Size = new System.Drawing.Size(35, 23);
+      this.btnAdd.TabIndex = 13;
+      this.btnAdd.Text = "+";
+      this.btnAdd.UseVisualStyleBackColor = true;
+      this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+      // 
+      // lblTask
+      // 
+      this.lblTask.AutoSize = true;
+      this.lblTask.Location = new System.Drawing.Point(78, 199);
+      this.lblTask.Name = "lblTask";
+      this.lblTask.Size = new System.Drawing.Size(0, 13);
+      this.lblTask.TabIndex = 14;
+       // 
+      // nameDataGridViewTextBoxColumn
+      // 
+      this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+      this.nameDataGridViewTextBoxColumn.Frozen = true;
+      this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+      this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+      // 
+      // descriptionDataGridViewTextBoxColumn
+      // 
+      this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+      this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+      this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+      // 
+      // noOfPomodorrowsReqDataGridViewTextBoxColumn
+      // 
+      this.noOfPomodorrowsReqDataGridViewTextBoxColumn.DataPropertyName = "NoOfPomodorrowsReq";
+      this.noOfPomodorrowsReqDataGridViewTextBoxColumn.HeaderText = "Pomodorrows";
+      this.noOfPomodorrowsReqDataGridViewTextBoxColumn.Name = "noOfPomodorrowsReqDataGridViewTextBoxColumn";
+      // 
+      // noOfPomodorrowPendingDataGridViewTextBoxColumn
+      // 
+      this.noOfPomodorrowPendingDataGridViewTextBoxColumn.DataPropertyName = "NoOfPomodorrowPending";
+      this.noOfPomodorrowPendingDataGridViewTextBoxColumn.HeaderText = "Remaining";
+      this.noOfPomodorrowPendingDataGridViewTextBoxColumn.Name = "noOfPomodorrowPendingDataGridViewTextBoxColumn";
+      // 
+      // taskIdDataGridViewTextBoxColumn
+      // 
+      this.taskIdDataGridViewTextBoxColumn.DataPropertyName = "TaskId";
+      this.taskIdDataGridViewTextBoxColumn.HeaderText = "TaskId";
+      this.taskIdDataGridViewTextBoxColumn.Name = "taskIdDataGridViewTextBoxColumn";
+      this.taskIdDataGridViewTextBoxColumn.Visible = false;
+      // 
+      // taskBindingSource
+      // 
+      this.taskBindingSource.DataSource = typeof(CountDownApp.Models.Task);
+      // 
+      // btnDelete
+      // 
+      this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnDelete.Location = new System.Drawing.Point(43, 190);
+      this.btnDelete.Name = "btnDelete";
+      this.btnDelete.Size = new System.Drawing.Size(35, 23);
+      this.btnDelete.TabIndex = 15;
+      this.btnDelete.Text = "X";
+      this.btnDelete.UseVisualStyleBackColor = true;
+      this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(267, 190);
+      this.ClientSize = new System.Drawing.Size(450, 464);
+      this.Controls.Add(this.btnDelete);
+      this.Controls.Add(this.lblTask);
+      this.Controls.Add(this.btnAdd);
+      this.Controls.Add(this.dataGridView1);
       this.Controls.Add(this.btnls);
       this.Controls.Add(this.btnGt);
       this.Controls.Add(this.chkLastMinitus);
@@ -255,6 +355,8 @@ namespace CountDownApp
       this.Load += new System.EventHandler(this.MainFormLoad);
       this.Resize += new System.EventHandler(this.MainFormResize);
       this.contextMenuStrip1.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.taskBindingSource)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -278,5 +380,15 @@ namespace CountDownApp
 		private System.Windows.Forms.TextBox txtNoOfMin;
     private System.Windows.Forms.Button btnGt;
     private System.Windows.Forms.Button btnls;
+    private System.Windows.Forms.DataGridView dataGridView1;
+    private System.Windows.Forms.BindingSource taskBindingSource;
+    private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn noOfPomodorrowsReqDataGridViewTextBoxColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn noOfPomodorrowPendingDataGridViewTextBoxColumn;
+    private System.Windows.Forms.DataGridViewTextBoxColumn taskIdDataGridViewTextBoxColumn;
+    private System.Windows.Forms.Button btnAdd;
+    private System.Windows.Forms.Label lblTask;
+    private System.Windows.Forms.Button btnDelete;
   }
 }

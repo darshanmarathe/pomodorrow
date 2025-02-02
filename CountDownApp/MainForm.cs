@@ -7,7 +7,12 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 
+using CountDownApp.Models;
+using CountDownApp.Repos;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CountDownApp
@@ -23,6 +28,8 @@ namespace CountDownApp
     private int Secendos = 0;
     private bool IsResetPeriodOver = false;
     private bool IsPaused = false;
+    private TasksRepository Repos;
+    private Task CurrentTask;
 
     #endregion Variables
 
@@ -33,9 +40,11 @@ namespace CountDownApp
       //
       InitializeComponent();
 
-      //
-      // TODO: Add constructor code after the InitializeComponent() call.
-      //
+      Repos = new TasksRepository();
+      dataGridView1.AllowUserToDeleteRows = false;
+      dataGridView1.DataSource = new BindingList<Task>(Repos.GetTasks());
+      CurrentTask = ((BindingList<Task>)dataGridView1.DataSource)[0];
+      lblTask.Text = CurrentTask.Name;
     }
 
     private void TxtNoOfMinTextChanged(object sender, EventArgs e)
@@ -83,6 +92,7 @@ namespace CountDownApp
           this.notifyIcon1.ShowBalloonTip(3000, "Times up", "Your times up", ToolTipIcon.Info);
           this.WindowState = FormWindowState.Normal;
           timer1.Enabled = false;
+          ReducePomodorrowCount();
           return;
         }
       }
@@ -145,6 +155,16 @@ namespace CountDownApp
       ShowTimeOnLabel();
     }
 
+    private void ReducePomodorrowCount()
+    {
+      //  ((List<Task>)dataGridView1.DataSource).Where((t) => t.TaskId == CurrentTask.TaskId).First().NoOfPomodorrowPending =CurrentTask.NoOfPomodorrowPending - 1; ;
+      CurrentTask.NoOfPomodorrowPending = CurrentTask.NoOfPomodorrowPending - 1;
+
+      dataGridView1.Refresh();
+      dataGridView1.Enabled = true;
+      Repos.WriteTask((BindingList<Models.Task>)dataGridView1.DataSource);
+    }
+
     private void ShowTimeOnLabel()
     {
       int min = 0;
@@ -164,6 +184,7 @@ namespace CountDownApp
       }
       TxtNoOfMinTextChanged(null, null);
       timer1.Enabled = true;
+      dataGridView1.Enabled = false;
     }
 
     private void BtnPauseClick(object sender, EventArgs e)
@@ -179,6 +200,7 @@ namespace CountDownApp
       Minitus = 0;
       txtNoOfMin.Text = "0";
       lblRemainingtime.Text = "0";
+      dataGridView1.Enabled = true;
     }
 
     private void TxtNoOfMinLeave(object sender, EventArgs e)
@@ -267,7 +289,6 @@ namespace CountDownApp
       this.WindowState = FormWindowState.Minimized;
     }
 
-    
     private void btnls_Click(object sender, EventArgs e)
     {
       decimal min = 0;
@@ -276,14 +297,12 @@ namespace CountDownApp
         txtNoOfMin.Text = "0";
         return;
       }
-      if(min > 1)
+      if (min > 1)
       {
         Minitus = min - 1;
         txtNoOfMin.Text = Minitus.ToString();
         calculateRemainingSecenods();
       }
-
-
     }
 
     private void btnGt_Click(object sender, EventArgs e)
@@ -294,13 +313,69 @@ namespace CountDownApp
         txtNoOfMin.Text = "0";
         return;
       }
-    
-      
-        Minitus = max + 1;
-        txtNoOfMin.Text = Minitus.ToString();
-      
+
+      Minitus = max + 1;
+      txtNoOfMin.Text = Minitus.ToString();
 
       calculateRemainingSecenods();
+    }
+
+    private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+    {
+      // Get the currently selected row
+      DataGridViewRow selectedRow = dataGridView1.Rows[e.RowIndex];
+      var tasks = (BindingList<Task>)dataGridView1.DataSource;
+
+      // Do something with the row, for example, get a value from a specific column
+      string cellValue = selectedRow.Cells[4].Value.ToString();
+      CurrentTask = tasks.Where((t) => t.TaskId.ToString() == cellValue).FirstOrDefault();
+      lblTask.Text = CurrentTask.Name;
+
+      Repos.WriteTask((BindingList<Task>)dataGridView1.DataSource);
+    }
+
+    private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+    {
+      if (dataGridView1.SelectedRows.Count > 0)
+      {
+        // Get the currently selected row
+        DataGridViewRow selectedRow = dataGridView1.SelectedRows[0];
+        var tasks = (BindingList<Task>)dataGridView1.DataSource;
+
+        // Do something with the row, for example, get a value from a specific column
+        string cellValue = selectedRow.Cells[4].Value.ToString();
+        CurrentTask = tasks.Where((t) => t.TaskId.ToString() == cellValue).FirstOrDefault();
+        lblTask.Text = CurrentTask.Name;
+      }
+    }
+
+    private void btnAdd_Click(object sender, EventArgs e)
+    {
+      var tasks = ((BindingList<Task>)dataGridView1.DataSource);
+      CurrentTask = new Task() { Name = "new Tasks..." };
+      tasks.Add(CurrentTask);
+      lblTask.Text = CurrentTask.Name;
+      dataGridView1.Refresh();
+    }
+
+    private void btnDelete_Click(object sender, EventArgs e)
+    {
+      if (CurrentTask == null)
+      {
+        MessageBox.Show("Select a task to delete");
+        return;
+      }
+      var result = MessageBox.Show("do you wish to delete task :" + CurrentTask.Name + " ?", "Confirm Delete ?", MessageBoxButtons.YesNo);
+      if (result == DialogResult.Yes)
+      {
+        var tasks = ((BindingList<Task>)dataGridView1.DataSource);
+        tasks.Remove(tasks.Where(t => t.TaskId == CurrentTask.TaskId).First());
+        CurrentTask =  tasks.Count == 0 ? null : tasks[0];
+        lblTask.Text = (CurrentTask == null) ? "NO TASK" : CurrentTask.Name;
+        dataGridView1.DataSource = tasks;
+        dataGridView1.Refresh();
+        Repos.WriteTask((BindingList<Task>)dataGridView1.DataSource);
+      }
     }
   }
 }
