@@ -266,5 +266,41 @@ namespace CountDownApp
     {
       this.WindowState = FormWindowState.Minimized;
     }
+
+    
+    private void btnls_Click(object sender, EventArgs e)
+    {
+      decimal min = 0;
+      if (!decimal.TryParse(txtNoOfMin.Text, out min))
+      {
+        txtNoOfMin.Text = "0";
+        return;
+      }
+      if(min > 1)
+      {
+        Minitus = min - 1;
+        txtNoOfMin.Text = Minitus.ToString();
+        calculateRemainingSecenods();
+      }
+
+
+    }
+
+    private void btnGt_Click(object sender, EventArgs e)
+    {
+      decimal max = 0;
+      if (!decimal.TryParse(txtNoOfMin.Text, out max))
+      {
+        txtNoOfMin.Text = "0";
+        return;
+      }
+    
+      
+        Minitus = max + 1;
+        txtNoOfMin.Text = Minitus.ToString();
+      
+
+      calculateRemainingSecenods();
+    }
   }
 }

@@ -55,26 +55,29 @@ namespace CountDownApp
       this.rdbCountDown = new System.Windows.Forms.RadioButton();
       this.btnHide = new System.Windows.Forms.Button();
       this.chkLastMinitus = new System.Windows.Forms.CheckBox();
+      this.btnGt = new System.Windows.Forms.Button();
+      this.btnls = new System.Windows.Forms.Button();
       this.contextMenuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
       // txtNoOfMin
       // 
-      this.txtNoOfMin.Location = new System.Drawing.Point(129, 6);
+      this.txtNoOfMin.Location = new System.Drawing.Point(135, 16);
       this.txtNoOfMin.Name = "txtNoOfMin";
-      this.txtNoOfMin.Size = new System.Drawing.Size(57, 20);
+      this.txtNoOfMin.Size = new System.Drawing.Size(39, 20);
       this.txtNoOfMin.TabIndex = 0;
       this.txtNoOfMin.Text = "0";
+      this.txtNoOfMin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
       this.txtNoOfMin.TextChanged += new System.EventHandler(this.TxtNoOfMinTextChanged);
       this.txtNoOfMin.Leave += new System.EventHandler(this.TxtNoOfMinLeave);
       // 
       // label1
       // 
-      this.label1.Location = new System.Drawing.Point(23, 9);
+      this.label1.Location = new System.Drawing.Point(6, 19);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(100, 23);
+      this.label1.Size = new System.Drawing.Size(108, 23);
       this.label1.TabIndex = 1;
-      this.label1.Text = "Number of Minitus";
+      this.label1.Text = "Number of minutes";
       // 
       // lblRemainingtime
       // 
@@ -202,18 +205,40 @@ namespace CountDownApp
       // 
       this.chkLastMinitus.Checked = true;
       this.chkLastMinitus.CheckState = System.Windows.Forms.CheckState.Checked;
-      this.chkLastMinitus.Location = new System.Drawing.Point(54, 165);
+      this.chkLastMinitus.Location = new System.Drawing.Point(48, 165);
       this.chkLastMinitus.Name = "chkLastMinitus";
-      this.chkLastMinitus.Size = new System.Drawing.Size(144, 24);
+      this.chkLastMinitus.Size = new System.Drawing.Size(161, 24);
       this.chkLastMinitus.TabIndex = 9;
       this.chkLastMinitus.Text = "Show Last-minute prompts ";
       this.chkLastMinitus.UseVisualStyleBackColor = true;
+      // 
+      // btnGt
+      // 
+      this.btnGt.Location = new System.Drawing.Point(169, 14);
+      this.btnGt.Name = "btnGt";
+      this.btnGt.Size = new System.Drawing.Size(29, 23);
+      this.btnGt.TabIndex = 10;
+      this.btnGt.Text = ">>";
+      this.btnGt.UseVisualStyleBackColor = true;
+      this.btnGt.Click += new System.EventHandler(this.btnGt_Click);
+      // 
+      // btnls
+      // 
+      this.btnls.Location = new System.Drawing.Point(107, 14);
+      this.btnls.Name = "btnls";
+      this.btnls.Size = new System.Drawing.Size(29, 23);
+      this.btnls.TabIndex = 11;
+      this.btnls.Text = "<<";
+      this.btnls.UseVisualStyleBackColor = true;
+      this.btnls.Click += new System.EventHandler(this.btnls_Click);
       // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(267, 190);
+      this.Controls.Add(this.btnls);
+      this.Controls.Add(this.btnGt);
       this.Controls.Add(this.chkLastMinitus);
       this.Controls.Add(this.btnHide);
       this.Controls.Add(this.rdbCountDown);
@@ -251,5 +276,7 @@ namespace CountDownApp
 		private System.Windows.Forms.Label lblRemainingtime;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.TextBox txtNoOfMin;
-	}
+    private System.Windows.Forms.Button btnGt;
+    private System.Windows.Forms.Button btnls;
+  }
 }
